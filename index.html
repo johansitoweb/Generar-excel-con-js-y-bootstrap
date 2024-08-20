@@ -1,0 +1,84 @@
+<!DOCTYPE html>  
+<html lang="es">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Generar Excel con JS y Bootstrap</title>  
+    <!-- Bootstrap CSS -->  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">  
+    <!-- SheetJS -->  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>  
+    <style>  
+        /* Estilo de la tabla */  
+        table {  
+            width: 100%;  
+            border-collapse: collapse;  
+            margin-top: 20px;  
+        }  
+        th {  
+            background-color: #007bff;  
+            color: white;  
+        }  
+        td {  
+            background-color: #f8f9fa;  
+            cursor: pointer; /* Cambiar el cursor para indicar que se puede editar */  
+        }  
+        td:hover {  
+            background-color: #e2e6ea; /* Color al pasar el cursor */  
+        }  
+    </style>  
+</head>  
+<body>  
+    <div class="container mt-5">  
+        <h2>Generar Excel con JavaScript y Bootstrap</h2>  
+        <table class="table" id="data-table">  
+            <thead>  
+                <tr>  
+                    <th>Nombre</th>  
+                    <th>Edad</th>  
+                    <th>Ciudad</th>  
+                </tr>  
+            </thead>  
+            <tbody>  
+                <tr>  
+                    <td contenteditable="true">Juan</td>  
+                    <td contenteditable="true">30</td>  
+                    <td contenteditable="true">Madrid</td>  
+                </tr>  
+                <tr>  
+                    <td contenteditable="true">Maria</td>  
+                    <td contenteditable="true">25</td>  
+                    <td contenteditable="true">Barcelona</td>  
+                </tr>  
+                <tr>  
+                    <td contenteditable="true">Carlos</td>  
+                    <td contenteditable="true">28</td>  
+                    <td contenteditable="true">Valencia</td>  
+                </tr>  
+                <tr>  
+                    <td contenteditable="true">Ana</td>  
+                    <td contenteditable="true">48</td>  
+                    <td contenteditable="true">Valencia</td>  
+                </tr> 
+                <tr>  
+                    <td contenteditable="true">julio</td>  
+                    <td contenteditable="true">23</td>  
+                    <td contenteditable="true">Valencia</td>  
+                </tr> 
+            </tbody>  
+        </table>  
+        <button class="btn btn-primary" id="export-btn">Exportar a Excel</button>  
+    </div>  
+
+    <script>  
+        document.getElementById('export-btn').addEventListener('click', function() {  
+            // Obtener los datos de la tabla  
+            const table = document.getElementById('data-table');  
+            const workbook = XLSX.utils.table_to_book(table, { sheet: "Reporte" });  
+
+            // Generar y descargar el archivo  
+            XLSX.writeFile(workbook, "reporte.xlsx");  
+        });  
+    </script>  
+</body>  
+</html>
